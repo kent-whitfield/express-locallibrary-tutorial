@@ -50,7 +50,6 @@ function authorCreate(first_name, family_name, d_birth, d_death, cb) {
 
 function genreCreate(name, cb) {
   var genre = new Genre({ name: name });
-
   genre.save(function (err) {
     if (err) {
       cb(err, null);
@@ -72,6 +71,7 @@ function bookCreate(title, summary, isbn, author, genre, cb) {
   if (genre != false) bookdetail.genre = genre;
 
   var book = new Book(bookdetail);
+
   book.save(function (err) {
     if (err) {
       cb(err, null);
