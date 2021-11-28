@@ -293,7 +293,7 @@ exports.book_update_get = function (req, res, next) {
       }
       if (results.book == null) {
         var err = new Error("Book not found");
-        err.status(404);
+        err.status = 404;
         return next(err);
       }
 

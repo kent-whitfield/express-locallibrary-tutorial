@@ -12,20 +12,24 @@ block content
 
       h4 Book Instances 
 
-      dl 
+      ul 
       each instance in book_instances 
-        dt 
-          a(href=instance.url) #{instance.book.title}
-        dd #{instance.imprint} - 
-          if instance.status=='Available'
-            span.text-success #{instance.status}
-          else if instance.status=='Maintenance'
-            span.text-danger #{instance.status}
-          else
-            span.text-warning #{instance.status}
-          br
-          |#{instance._id} 
         hr
+        if instance.status=='Available'
+          p
+            span.text-success #{instance.status}
+        else if instance.status=='Maintenance'
+          p
+            span.text-danger #{instance.status} 
+            span (Due: #{instance.due_back_formatted} )
+        else
+          p
+            span.text-warning #{instance.status} 
+            span (Due: #{instance.due_back_formatted} )
+        
+        p #[strong Imprint:] #{instance.imprint} 
+        p #[strong Id:] 
+          a(href=instance.url) #{instance._id} 
 
   else 
     p Do you really want to delete this book? 
